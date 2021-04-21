@@ -8,9 +8,21 @@ from rest_framework.views import APIView
 # Permissions & Authentication
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
-
+# Generic views & Mixins
 from rest_framework import generics
 from rest_framework import mixins
+# Generic Viewset
+from rest_framework import viewsets
+
+class GenericArticleViewset(viewsets.GenericViewSet, mixins.ListModelMixin,
+                         mixins.CreateModelMixin, mixins.RetrieveModelMixin,
+                         mixins.UpdateModelMixin, mixins.DestroyModelMixin):
+    queryset = Article.objects.all()
+    serializer_class = ArticleSerializer
+
+
+
+'''
 # Generic views & Mixins
 class GenericArticleView(generics.GenericAPIView, mixins.ListModelMixin,
                          mixins.CreateModelMixin, mixins.RetrieveModelMixin,
@@ -34,7 +46,7 @@ class GenericArticleView(generics.GenericAPIView, mixins.ListModelMixin,
     def delete(self, request, id=None):
         return self.destroy(request, id)
     
-
+'''
 
 # Model Based Views
 class Articlelist(APIView):
