@@ -14,12 +14,20 @@ from rest_framework import mixins
 # Generic Viewset
 from rest_framework import viewsets
 
+# ModelViewSet
+class GenericArticleViewset(viewsets.ModelViewSet):
+    queryset = Article.objects.all()
+    serializer_class = ArticleSerializer
+
+
+'''
+# GenericViewSet
 class GenericArticleViewset(viewsets.GenericViewSet, mixins.ListModelMixin,
                          mixins.CreateModelMixin, mixins.RetrieveModelMixin,
                          mixins.UpdateModelMixin, mixins.DestroyModelMixin):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
-
+'''
 
 
 '''
